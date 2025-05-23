@@ -1,5 +1,5 @@
 # *******************************************************************************
-# Copyright (c) 2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -11,32 +11,16 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
-name: Documentation
-
-permissions:
-  contents: write
-  pages: write
-  pull-requests: write
-  id-token: write
+name: Formatting checks
 
 on:
-  pull_request_target:
-    types: [opened, reopened, synchronize] # Allows forks to trigger the docs build
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, reopened, synchronize]
   merge_group:
     types: [checks_requested]
 
 jobs:
-  build-docs:
-    uses: eclipse-score/cicd-workflows/.github/workflows/docs.yml@main
-    permissions:
-      contents: write
-      pages: write
-      pull-requests: write
-      id-token: write
-
+  formatting-check:
+    uses: eclipse-score/cicd-workflows/.github/workflows/format.yml@main
     with:
-      bazel-target: "//docs:github_pages"
-      retention-days: 3
+      bazel-target: "test //:format.check" # optional, this is the default
