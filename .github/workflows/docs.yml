@@ -30,7 +30,7 @@ on:
 
 jobs:
   build-docs:
-    uses: qorix-group/cicd-workflows/.github/workflows/docs.yml@dcalavrezo_gh_pages
+    uses: qorix-group/cicd-workflows/.github/workflows/docs.yml@dcalavrezo_workflow_gh
     permissions:
       contents: write
       pages: write
